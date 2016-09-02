@@ -1,0 +1,41 @@
+<h2>Sign up for our newsletter to recive news</h2>
+<form id="form" action="/process?form=newsletter" method="post">
+    <input type="hidden" name="_csrf" value="{{csrf}}">
+    <div>
+        <label for="fieldName">Name</label>
+        <input type="text" id="fieldName" name="name">
+    </div>
+    <div>
+        <label for="fieldEmail">Email</label>
+        <input type="email" required id="fieldEmail" name="emial">
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>
+
+
+{{#section 'jquery'}}
+    <script>
+        $(function(){
+            $('#form').on('submit', function(ev){
+                ev.preventDefault();
+                $.ajax({
+                    url:'/process',
+                    type:'post',
+                    dataType:'json',
+                    data:{
+                        name:'jserman',
+                        email:'145735@qq.com',
+                        phone:'15529308832'
+                    }
+                }).then(function(res){
+                    console.log('success');
+                    console.log(res);
+                }, function(){
+                    console.log('error');
+                })
+            })
+        })
+    </script>
+{{/section}}
